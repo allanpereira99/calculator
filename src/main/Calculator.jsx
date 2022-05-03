@@ -46,10 +46,24 @@ export default class Calculator extends Component {
       const equals = operation === "=";
       const currentOperation = this.state.operation;
       const values = [...this.state.values];
-      let geval = eval;
-      values[0] = geval(`${values[0]} ${currentOperation} ${values[1]}`);
-      values[1] = 0;
-
+      switch (currentOperation) {
+        case "+":
+          values[0] = values[0] + values[1];
+          values[1] = 0;
+          break;
+        case "-":
+          values[0] = values[0] - values[1];
+          values[1] = 0;
+          break;
+        case "/":
+          values[0] = values[0] / values[1];
+          values[1] = 0;
+          break;
+        case "*":
+          values[0] = values[0] * values[1];
+          values[1] = 0;
+          break;
+      }
       this.setState({
         displaValue: values[0],
         operation: equals ? null : operation,
